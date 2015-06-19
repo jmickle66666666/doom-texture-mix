@@ -15,7 +15,13 @@ def randomize_textures(twad,tmap):
     map = omg.mapedit.MapEditor(twad.maps[tmap])
 
     texturelist = []
-
+    floorlist = []
+    ceillist = []
+    
+    for f in map.sectors:
+        if (f.tx_floor != "F_SKY1"): floorlist.append(f.tx_floor)
+        if (f.tx_ceil != "F_SKY1"): ceillist.append(f.tx_ceil)
+    
     for s in map.sidedefs:
         if (s.tx_up != "-"): 
             if (s.tx_up not in texturelist):
@@ -28,7 +34,15 @@ def randomize_textures(twad,tmap):
                 texturelist.append(s.tx_low)
                 
     mixed_list = texturelist[:]
+    mixed_flist = floorlist[:]
+    mixed_clist = ceillist[:]
     shuffle(mixed_list)
+    shuffle(mixed_flist)
+    shuffle(mixed_clist)
+    
+    for f in map.sectors:
+        if (f.tx_floor != "F_SKY1"): f.tx_floor = mixed_flist[floorlist.index(f.tx_floor)]
+        if (f.tx_ceil != "F_SKY1"): f.tx_ceil = mixed_clist[ceillist.index(f.tx_ceil)]
 
     for s in map.sidedefs:
         if (s.tx_up != "-"):
