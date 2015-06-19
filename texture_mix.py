@@ -3,8 +3,8 @@ import omg.mapedit
 import sys
 from random import shuffle
 
-if (len(sys.argv) != 3):
-    print("Usage: texture_mix.py wad_path map_name")
+if (len(sys.argv) != 2):
+    print("Usage: texture_mix.py wad_path")
     sys.exit()
 
 wad = omg.WAD(sys.argv[1])
