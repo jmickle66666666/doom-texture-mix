@@ -42,3 +42,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.wad
+
+build/*
+
+texture_mix.spec
